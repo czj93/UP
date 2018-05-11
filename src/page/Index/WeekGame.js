@@ -21,23 +21,25 @@ class WeekGame extends Component {
     render(){
         const {title, list, subTitle} = this.props
         return (
-            <View style={{ width:width, paddingBottom: 20, marginBottom: 15, paddingTop: 20 }}>
+            <View style={{ width:width, paddingBottom: 20, paddingTop: 20 }}>
                 <ColumTitle page={'Me'} parms={{}} title={title} />
-                <View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'baseline', marginLeft: 15, marginBottom: 15 }}>
-                        <Text style={{ fontSize: 20, color: '#fff' }}>{ subTitle.slice(0, 1) }</Text>
-                        <Text style={{ fontSize: 11, color: '#fff'}}>{ subTitle.slice(1) }</Text>
+                <View style={{ backgroundColor: '#393e49', paddingTop: 20, paddingBottom: 20 }}>
+                    <View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'baseline', marginLeft: 15, marginBottom: 15 }}>
+                            <Text style={{ fontSize: 20, color: '#fff' }}>{ subTitle.slice(0, 1) }</Text>
+                            <Text style={{ fontSize: 11, color: '#fff'}}>{ subTitle.slice(1) }</Text>
+                        </View>
+                        <View style={{ backgroundColor: 'rgba(151,151,151, .2)', height: 1, marginLeft: 15, marginRight: 15 }}></View>
                     </View>
-                    <View style={{ backgroundColor: 'rgba(151,151,151, .2)', height: 1, marginLeft: 15, marginRight: 15 }}></View>
+                    <FlatList 
+                        data={list}
+                        horizontal={true}
+                        initialNumToRender={4}
+                        keyExtractor={(item, index) => item.gameId.toString()}
+                        getItemLayout={(data, index) => ( {length: 100, offset: 100 * index, index} )}
+                        renderItem={ this._renderItem }
+                    />
                 </View>
-                <FlatList 
-                    data={list}
-                    horizontal={true}
-                    initialNumToRender={4}
-                    keyExtractor={(item, index) => item.gameId.toString()}
-                    getItemLayout={(data, index) => ( {length: 100, offset: 100 * index, index} )}
-                    renderItem={ this._renderItem }
-                />
             </View>
         )
     }

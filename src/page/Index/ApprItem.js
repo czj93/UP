@@ -30,10 +30,10 @@ class ApprItem extends Component {
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' }}>
-                            <ImageBackground source={require('../../resource/img/index/img_home_gear.png')} style={{ width: 25, height: 25, marginTop: 10, marginBottom: 10, marginLeft: 15 }}>
+                            <ImageBackground source={require('../../resource/img/index/img_bj.png')} style={{ width: 30, height: 30, marginTop: 10, marginBottom: 10, marginLeft: 15 }}>
                                 {
                                     data.upPercent ? 
-                                    <Text style={{fontSize: 11, color: '#999', lineHeight: 25, textAlign: 'center', color: '#fff', fontFamily: 'Avenir-Black'}}>{data.upPercent + '%'}</Text>
+                                    <Text style={{fontSize: 11, color: '#999', lineHeight: 30, textAlign: 'center', color: '#fff', fontFamily: 'Avenir-Black'}}>{data.upPercent + '%'}</Text>
                                     : null
                                 }
                             </ImageBackground>
