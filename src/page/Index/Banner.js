@@ -1,28 +1,17 @@
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {Dimensions,View, Text, Image, StyleSheet} from 'react-native';
 import React, {Component} from 'react';
 import Swiper from 'react-native-swiper';
 
+const { width, height } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
-    wrapper: {
-        height: 160
-    },
-    slide1: {
+    wrapper: {},
+    slide: {
       flex: 1,
+      width: width, 
+      height: 160,
       justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#9DD6EB',
-    },
-    slide2: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#97CAE5',
-    },
-    slide3: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#92BBD9',
+      alignItems: 'center'
     },
     text: {
       color: '#fff',
@@ -33,18 +22,21 @@ const styles = StyleSheet.create({
 
 class Banner extends Component {
     render(){
+        const {bannerList} = this.props;
         return (
-            <Swiper style={styles.wrapper} showsButtons={true} >
-                <View style={styles.slide1}>
-                    <Text style={styles.text}>Hello Swiper</Text>
-                </View>
-                <View style={styles.slide2}>
-                    <Text style={styles.text}>Beautiful</Text>
-                </View>
-                <View style={styles.slide3}>
-                    <Text style={styles.text}>And simple</Text>
-                </View>
-            </Swiper>
+            <View style={{ height: 160 }}>
+                <Swiper style={styles.wrapper} showsButtons={false} height={160} width={width} autoplay
+                    dot={<View style={{backgroundColor: 'rgba(255,255,255,.5)', width: 26, height: 1.5, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
+                    activeDot={<View style={{backgroundColor: '#0DE8FB', width: 26, height: 1.5, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
+                    paginationStyle={{ bottom: 15 }}
+                >
+                    {
+                        bannerList.map((item, i) => <View style={styles.slide} key={i}>
+                            <Image source={{ uri: item.imageUrl }} style={{ width: width, height: 160 }}></Image>
+                        </View>)
+                    }
+                </Swiper>
+            </View>
         )
     }
 }

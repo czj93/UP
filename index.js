@@ -2,16 +2,16 @@ import React, {Component} from 'react';
 import { AppRegistry, Image } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import App from './App';
-import Index from './src/page/Index'
 import Game from './src/page/Game'
 import GameDetail from './src/page/GameDetail'
 import Me from './src/page/Me'
 
+import UpTab from './src/page/Index/HeadTab'
 import TabBarItem from './src/page/Components/TabBarItem'
 
 const HomeNav = TabNavigator({
     UP: {
-      screen: Index,
+      screen: UpTab,
       navigationOptions: (navigation) => {
         return {
             tabBarLabel:'UP',

@@ -8,7 +8,7 @@ class ColumTitle extends Component {
     render(){
         const { title, page, parms } = this.props
         return (
-            <View style={{ width: width, paddingBottom: 10, paddingBottom: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <View style={{ width: width, paddingTop: 5, paddingBottom: 20, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <View style={{ position: 'relative' }}>
                     <View style={{ position: 'absolute', top: 4, left: 0, width: 6, height: 10, backgroundColor: '#00e8f8' }}></View>
                     <Text style={{ fontSize: 14, color: '#fff', marginLeft: 15}}>{title}</Text>
