@@ -22,15 +22,15 @@ class News extends Component {
 
     _renderItem = ({item}) => {
         switch(item.contentType){
-            case 1: return <NewsArticle item={item} />
-            case 2: return <NewsAppr item={item} />
+            case 1: return <NewsArticle item={item} navigation={this.props.navigation} />
+            case 2: return <NewsAppr item={item} navigation={this.props.navigation} />
             default: return null
         }
     }
 
     _fetchData = () => {
         
-        return fetch('https://up.163.com/api/app/dynamic/getNew',{
+        return fetch('https://up.163.com/api/app/dynamic/getNew?page=1&limit&10',{
             method: 'GET',
             headers:{
                 'Accept': 'application/json',
@@ -70,20 +70,19 @@ class News extends Component {
         let {list, refreshing, ready} = this.state
         return (
             <View style={{ backgroundColor: '#171717', width:width,height:height, paddingBottom: 80 }}>
-            {
-                ready 
-                ? <ActivityIndicator size="large" style={{ marginTop: 100 }}/>
-                : <FlatList 
-                    data={list}
-                    refreshing={refreshing}
-                    horizontal={false}
-                    onRefresh={this._refresh}
-                    keyExtractor={(item, index) => item.appreciationId.toString()}
+                {
+                    ready 
+                    ? <ActivityIndicator size="large" style={{ marginTop: 100 }}/>
+                    : <FlatList 
+                        data={list}
+                        refreshing={refreshing}
+                        horizontal={false}
+                        onRefresh={this._refresh}
+                        keyExtractor={(item, index) => item.appreciationId.toString()}
 
-                    renderItem={ this._renderItem }
-                />
-            }
-                
+                        renderItem={ this._renderItem }
+                    />
+                }
             </View>
         )
     }

@@ -1,5 +1,6 @@
-import {Dimensions, Text, View, Button, Image, FlatList} from 'react-native';
+import {Dimensions, Text, View, Button, Image, FlatList, TouchableWithoutFeedback} from 'react-native';
 import React, {Component} from 'react';
+import {withNavigation} from 'react-navigation'
 
 import ColumTitle from './ColumTitle'
 
@@ -12,10 +13,14 @@ class WeekGame extends Component {
 
     _renderItem = ({item}) => {
         return (
-            <View style={{ marginLeft: 15, marginTop: 15 }}>
-                <Image source={{ uri: item.coverImageUrl.replace('http:', 'https:') }} defaultSource={require('../../resource/img/default.png')} style={{ width: 75, height: 100, borderRadius: 6, borderWidth: 2, borderColor: '#000' }}></Image>
-                <Text numberOfLines={1} style={{ fontSize: 11, color: '#fff', marginTop: 10, width: 75 }}>{ item.gameName }</Text>
-            </View>
+            <TouchableWithoutFeedback onPress={() => {
+                this.props.navigation.navigate('GameDetail', {id: item.gameId})
+            }}>
+                <View style={{ marginLeft: 15, marginTop: 15 }}>
+                    <Image source={{ uri: item.coverImageUrl.replace('http:', 'https:') }} defaultSource={require('../../resource/img/default.png')} style={{ width: 75, height: 100, borderRadius: 6, borderWidth: 2, borderColor: '#000' }}></Image>
+                    <Text numberOfLines={1} style={{ fontSize: 11, color: '#fff', marginTop: 10, width: 75 }}>{ item.gameName }</Text>
+                </View>
+            </TouchableWithoutFeedback>
         )
     }
     render(){
@@ -45,4 +50,4 @@ class WeekGame extends Component {
     }
 }
 
-export default WeekGame
+export default withNavigation(WeekGame)

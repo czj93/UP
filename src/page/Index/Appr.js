@@ -11,7 +11,7 @@ class Appr extends Component {
     }
 
     _renderItem = ({ item }) => {
-        return <ApprItem data={item} />
+        return <ApprItem data={item} navigation={this.props.navigation} />
     }
 
     render(){

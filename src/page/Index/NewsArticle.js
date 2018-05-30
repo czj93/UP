@@ -1,4 +1,4 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TouchableWithoutFeedback} from 'react-native';
 import React, {Component} from 'react';
 
 import Avatar from '../Components/avatar'
@@ -17,7 +17,11 @@ class NewsArticle extends Component {
                 <Text style={{ color: '#d2d2d2', fontSize: 16, lineHeight: 26 }}>{item.contentDigest}</Text>
                 {
                     item.imageList && item.imageList.length 
-                    ? <View><Image source={{ uri: item.imageList[0] }} style={{ width: 345, height: 147, marginTop: 5  }} /> </View> 
+                    ? <TouchableWithoutFeedback onPress={() => { 
+                        this.props.navigation.navigate('ArticleDetail', {link: item.linkUrl})
+                     }}>
+                        <View><Image source={{ uri: item.imageList[0] }} style={{ width: 345, height: 147, marginTop: 5  }} /> </View> 
+                    </TouchableWithoutFeedback>
                     : null
                 }
             </View>

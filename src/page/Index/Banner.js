@@ -1,6 +1,7 @@
-import {Dimensions,View, Text, Image, StyleSheet} from 'react-native';
+import {Dimensions,View, Text, Image, StyleSheet, TouchableWithoutFeedback} from 'react-native';
 import React, {Component} from 'react';
 import Swiper from 'react-native-swiper';
+import {withNavigation} from 'react-navigation'
 
 const { width, height } = Dimensions.get('window');
 
@@ -32,7 +33,12 @@ class Banner extends Component {
                 >
                     {
                         bannerList.map((item, i) => <View style={styles.slide} key={i}>
-                            <Image source={{ uri: item.imageUrl }} style={{ width: width, height: 160 }}></Image>
+                            <TouchableWithoutFeedback onPress={() => {
+                                this.props.navigation.navigate('ArticleDetail', {link: item.linkUrl})
+                            }}> 
+                                <Image source={{ uri: item.imageUrl }} style={{ width: width, height: 160 }}></Image>
+                            </TouchableWithoutFeedback>
+                            
                         </View>)
                     }
                 </Swiper>
@@ -42,4 +48,4 @@ class Banner extends Component {
 }
 
 
-export default Banner
+export default withNavigation(Banner)

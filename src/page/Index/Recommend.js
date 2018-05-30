@@ -84,7 +84,7 @@ class Index extends Component {
                     }else if(item.columnType == 2 && item.contentDisplayType == 2){ // 游戏列表
                         return <WeekGame key={i} title={item.columnTitle} subTitle={ item.columnSubtitle } list={item.gameList} />
                     }else if(item.columnType == 2 && item.contentDisplayType == 1){ // 鉴赏列表
-                        return <Appr key={i} page={'Me'} title={item.columnTitle} list={item.contentList} />
+                        return <Appr key={i} page={'Me'} title={item.columnTitle} list={item.contentList} navigation={this.props.navigation} />
                     } 
                 })
             }
