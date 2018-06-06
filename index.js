@@ -3,7 +3,8 @@ import { AppRegistry, Image } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import App from './App';
 import Game from './src/page/Game'
-import GameDetail from './src/page/Detail/gameDetail'
+// import GameDetail from './src/page/Detail/gameDetail'
+import GameDetail from './src/page/GameDetail/index'
 import Me from './src/page/Me'
 
 import Article from './src/page/Detail/article'
@@ -13,6 +14,7 @@ import UpTab from './src/page/Index/HeadTab'
 import TabBarItem from './src/page/Components/TabBarItem'
 
 const HomeNav = TabNavigator({
+    
     UP: {
       screen: UpTab,
       navigationOptions: (navigation) => {
