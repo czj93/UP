@@ -8,7 +8,7 @@ class ApprList extends Component {
         super(props)
     }
 
-    _renderItem({ item }) {
+    _renderItem(item) {
         let imgsArr = []
         for(let attr in item.imgs){
             imgsArr.push(item.imgs[attr]) 
@@ -22,7 +22,7 @@ class ApprList extends Component {
             imgsArr = imgsArr.slice(0)
         }
         return (
-            <View style={styles.container}>
+            <View style={styles.container} key={item.id}>
                 <View style={styles.header}>
                     <Avatar data={item.author} textStyle={{ color: '#999' }} />
                     <Image source={ 
@@ -31,32 +31,44 @@ class ApprList extends Component {
                         : require('../../resource/img/icon_like/icon_choose_unlike.png') 
                     } /> 
                 </View>
-                <Text numberOfLines={3} style={styles.text}>{item.content.substring(0, 10)}</Text>
+                <Text numberOfLines={3} style={styles.text}>{item.content}</Text>
                 <View style={styles.imgs}>
                     {
-                        imgsArr.map(image => <View key={item.id} style={styles.imgItem}><Image source={{ uri: image.src }} style={{ width: _width, height: 112 }} /> </View>)
+                        imgsArr.map(image => <View key={image.id} style={styles.imgItem}><Image source={{ uri: image.src.replace('http://', 'https://') }} style={{ width: _width, height: 112 }} /> </View>)
                     }
                 </View>
             </View>
         )
     }
 
+    getOffset(cb){
+        this.container.measure(cb)
+    }
+
     render(){
         const { data } = this.props        
         return (
-            <FlatList 
-                data={data} 
-                bounces={false}
-                renderItem={this._renderItem}
-                keyExtractor={(item, index) => item.id.toString()}
-            />
+            <View ref={view => this.container = view}>
+                {/* <FlatList 
+                    data={data} 
+                    bounces={false}
+                    initialNumToRender={10}
+                    renderItem={this._renderItem}
+                    keyExtractor={(item, index) => item.id.toString()}
+                /> */}
+                {
+                    data.map(item => this._renderItem(item))
+                }
+            </View>
         )
     }
 }
 
 const styles =  StyleSheet.create({
     container:{
-        padding: 15
+        padding: 15,
+        marginBottom: 10,
+        backgroundColor: '#fff'
     },
     header:{
         flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'

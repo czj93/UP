@@ -16,10 +16,13 @@ class Info extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.info}>
-                    <Text style={styles.title}>{ game.gameName }</Text>
+                    <Text style={styles.title} numberOfLines={1} >{ game.gameName }</Text>
                     <View style={styles.labelContainer}>
                         {
-                            labelList.map(item => <Text key={item.labelId} style={styles.labelText}>{ item.labelName }</Text>)
+                            game.supportChinese ? <Image source={require('../../resource/img/game-detail/img_chinese.png')} style={{ width: 25, height: 15, marginRight: 10 }} /> : null
+                        }
+                        {
+                            labelList.map(item => <Text key={item.labelId} style={styles.labelText}>{ item.labelName+"   " }</Text>)
                         }
                     </View>
                     <View style={styles.focus}>
@@ -46,7 +49,7 @@ const styles = StyleSheet.create({
         paddingBottom: 15
     },
     info:{
-        width: 200
+        width: 240
     },
     title:{
         fontSize: 20,

@@ -14,7 +14,6 @@ class Desc extends Component {
                     <Text style={styles.title}>简介</Text>
                     <Text style={styles.descText}>{ game.description }</Text>
                 </View>
-                <View style={styles.hairLine}></View>
                 <View style={styles.platform}>
                     {
                         game.platformList.map(item => <View key={item.platformId} style={styles.platformItem}><Text style={styles.platformText}>{item.platformName}</Text></View>)
@@ -31,11 +30,9 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     desc:{
-        margin: 15
-    },
-    hairLine:{
-        height: 1,
-        backgroundColor: '#e4e4e4'
+        padding: 15,
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomColor: '#e4e4e4'
     },
     title:{
         fontSize: 14,
@@ -50,7 +47,6 @@ const styles = StyleSheet.create({
         textAlign: 'justify'
     },
     platform:{
-        paddingLeft: 15,
         paddingRight: 15,
         paddingBottom: 15,
         flexDirection: 'row', 
@@ -60,6 +56,7 @@ const styles = StyleSheet.create({
     platformItem:{
         borderRadius: 100,
         marginTop: 15,
+        marginLeft: 15,
         backgroundColor: '#e8e8e8'
     },
     platformText:{
